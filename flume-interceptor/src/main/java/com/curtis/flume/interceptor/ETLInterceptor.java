@@ -32,17 +32,7 @@ public class ETLInterceptor implements Interceptor {
 
     @Override
     public List<Event> intercept(List<Event> list) {
-
-        Iterator<Event> iterator = list.iterator();
-
-        while (iterator.hasNext()) {
-            Event next = iterator.next();
-
-            if (intercept(next) == null){
-                iterator.remove();
-            }
-        }
-
+        list.removeIf(next -> intercept(next) == null);
         return list;
     }
 
